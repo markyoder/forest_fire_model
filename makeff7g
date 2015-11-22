@@ -1,0 +1,47 @@
+##
+# sample MakeFile for my MySQL Demo program.
+# emulate and optimize the compiler command:
+# g++ -L/usr/lib -lmysqlclient -lmysqlpp MySQLdemo.cpp /home/myoder/Source/mysqlutil.o -o mysqldemo1
+# or always compile the UTIL code:
+# g++ -L/usr/lib -lmysqlclient -lmysqlpp MySQLdemo.cpp /home/myoder/Research/mysql++dev-examples/util.cpp -o mysqldemo1
+#
+# since don't use a default MAKE filename, execute via:
+# make -f makeGridCascade2
+###
+# set variables:
+#
+CXX=g++ -Wall
+INCLUDES=-I/usr/include/mysql -I/usr/include/mysql++ -I/home/myoder/Documents/Source -I/home/myoder/Documents/gnuplot_i++
+#INCLUDES=-I/home/myoder/Documents/Source -I/home/myoder/Documents/gnuplot_i++
+#LDFLAGS=-L/usr/libs
+LIBS=-L/usr/libs -lmysqlclient -lmysqlpp
+#LIBS=-static -L/usr/libs
+#LIBS=-L/usr/libs  
+CXXFLAGS=$(INCLUDES) 
+
+# OBJS = MySQLdemo.o mysqlutil.o
+
+# simple:
+# gnuplot_i.o:	gnuplot_i.cc gnuplot_i.hpp
+
+#ygnp.o:	gnuplot_i.cc gnuplot_i.hpp
+#	$(CXX) gnuplot_i.hpp gnuplot_i.cc -c -o ygnp.o $(LIBS) $(INCLUDES)
+
+#glebsutils.o: glebsutils.cpp glebsutils.h
+#	$(CXX) /home/myoder/Source/glebsutils.cpp -c -o glebsutils.o
+
+
+#ffire7g: ForestFire7g.cpp glebsutils.o yutils.o
+ffire7g: ForestFire7g.cpp glebsutils.o 
+	$(CXX) ForestFire7g.cpp glebsutils.o gnuplot_i.cc -o$@ $(LIBS) $(INCLUDES)
+
+yutils.o: yutils.cpp yutils.h
+	$(CXX) $(FLAGS) -c yutils.cpp
+#
+#ffbits.o: ffbits.cpp 
+#	$(CXX) $(FLAGS) -c ffbits.cpp
+
+glebsutils.o: glebsutils.cpp glebsutils.h
+	$(CXX) $(FLAGS) -c glebsutils.cpp
+
+

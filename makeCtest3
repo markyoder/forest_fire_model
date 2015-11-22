@@ -1,0 +1,13 @@
+CXX=g++ -Wall
+#INCLUDES=-I/usr/include/mysql -I/usr/include/mysql++ -I/home/myoder/Documents/Source -I/home/myoder/Documents/gnuplot_i++
+INCLUDES=-I/home/myoder/Documents/Source -I/home/myoder/Documents/gnuplot_i++ -I/usr/include/mysql -I/usr/include/mysql++ 
+#LDFLAGS=-L/usr/libs
+LIBS=-L/usr/libs -lmysqlclient -lmysqlpp -lyodamysql
+#LIBS= -L/usr/libs
+#LIBS=-L/usr/libs  
+CXXFLAGS=$(INCLUDES) 
+
+ctest3: ctest3.cpp 
+	$(CXX) ctest3.cpp -o$@ $(LIBS) $(INCLUDES)
+
+
